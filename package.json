@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/alligatormonday/Mongoose_Fitness/issues"
   },
-  "homepage": "https://github.com/alligatormonday/Mongoose_Fitness#readme"
+  "homepage": "https://github.com/alligatormonday/Mongoose_Fitness#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.4",
+    "morgan": "^1.10.0"
+  }
 }
