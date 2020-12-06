@@ -38,6 +38,8 @@ const workOutSchema = new Schema({
     ]
 });
 
+// function with method to get total duration 
+
 const Workout = mongoose.model("Workout", workOutSchema);
 
 module.exports = Workout;
