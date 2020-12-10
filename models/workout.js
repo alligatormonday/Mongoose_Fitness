@@ -6,24 +6,27 @@ const Schema = mongoose.Schema;
 
 const workOutSchema = new Schema({
     day: {
-        type: Date(),
+        type: Date,
         default: Date.now,
     },
     exercises: [
         {
             type: {
                 type: String,
-                trim: true
+                trim: true,
             }, 
             name: {
                 type: String, 
-                trim: true
+                trim: true,
+                minlength: 3
             }, 
             duration: {
-                type: Number
+                type: Number,
+                min: 1
             }, 
             distance: {
-                type: Number
+                type: Number,
+                min: 1
             },
             weight: {
                 type: Number
@@ -37,6 +40,8 @@ const workOutSchema = new Schema({
         }
     ]
 });
+
+// function with method to get total duration 
 
 const Workout = mongoose.model("Workout", workOutSchema);
 
