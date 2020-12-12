@@ -2,9 +2,11 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+const opts = { toJSON: { virtuals: true } };
+
 // every property in the model has its own specific object of type definitions
 
-const workOutSchema = new Schema({
+const workoutSchema = new Schema({
     day: {
         type: Date,
         default: Date.now,
@@ -39,10 +41,17 @@ const workOutSchema = new Schema({
             } 
         }
     ]
+}, opts);
+
+// Mongoose virtual property with a function with method to get total duration of workout 
+workoutSchema.virtual('totalDuration').get(function () {
+    let duration = 0;
+    this.exercises.forEach(workout => {
+        duration += workout.duration;
+    });
+    return duration;
 });
 
-// function with method to get total duration 
-
-const Workout = mongoose.model("Workout", workOutSchema);
+const Workout = mongoose.model("Workout", workoutSchema);
 
 module.exports = Workout;
