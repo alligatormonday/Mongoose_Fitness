@@ -24,6 +24,17 @@ app.get("/exercise", function (req, res) {
     res.sendFile(path.join(__dirname, "/public/exercise.html"));
 });
 
+app.get("/api/workouts/", (req, res) => {
+    Workout.find({})
+        .then(dbWorkouts => {
+            res.json(dbWorkouts);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+});
+
+
 app.get("/api/workouts/range/", (req, res) => {
     Workout.find({})
         .then(dbWorkouts => {
@@ -32,6 +43,10 @@ app.get("/api/workouts/range/", (req, res) => {
         .catch(err => {
             res.status(400).json(err);
         });
+});
+
+app.get("/stats", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/stats.html"));
 });
 
 app.post("/api/workouts/", ({ body }, res) => {
@@ -54,11 +69,6 @@ app.put("/api/workouts/:id", ({ body, params }, res) => {
             res.status(400).json(err);
         });
 });
-
-app.get("/stats", function (req, res) {
-    res.sendFile(path.join(__dirname, "/public/stats.html"));
-});
-
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
